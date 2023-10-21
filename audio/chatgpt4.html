@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Audio API Example</title>
+</head>
+<body>
+  <h1>Web Audio API Example</h1>
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+
+  <script>
+
+    
+    let audioContext;
+
+    // Function to create an audio context
+    function createAudioContext() {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      playButton.disabled = false;
+    }
+
+   // Function to play audio
+function playAudio() {
+  if (audioContext.state === 'suspended') {
+    audioContext.resume().then(function() {
+      startPlayback();
+    });
+  } else {
+    startPlayback();
+  }
+}
+
+function startPlayback() {
+  // Create an AudioBufferSourceNode
+  const sourceNode = audioContext.createBufferSource();
+  sourceNode.buffer = audioBuffer;
+  
+  // Connect the source node to the audio context's destination (speakers)
+  sourceNode.connect(audioContext.destination);
+  
+  // Start playback
+  sourceNode.start();
+  
+  // Set the sourceNode as a global variable so you can stop it later
+  window.sourceNode = sourceNode;
+}
+
+    // Event listeners for play and stop buttons
+    const playButton = document.getElementById('playButton');
+    const stopButton = document.getElementById('stopButton');
+
+    playButton.addEventListener('click', function() {
+      if (!audioContext) {
+        createAudioContext();
+      }
+      playAudio();
+    });
+
+    stopButton.addEventListener('click', function() {
+  if (window.sourceNode) {
+    window.sourceNode.stop();
+  }
+});
+
+  </script>
+</body>
+</html>

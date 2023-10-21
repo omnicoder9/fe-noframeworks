@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Audio API Example</title>
+</head>
+<body>
+  <h1>Web Audio API Example</h1>
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+
+  <script>
+    // Initialize audio context
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Load audio file
+    const audioElement = new Audio('forest-lullaby-110624.mp3');
+
+    const playButton = document.getElementById('playButton');
+    const stopButton = document.getElementById('stopButton');
+
+    // Create an audio source from the audio element
+    const audioSource = audioContext.createMediaElementSource(audioElement);
+
+    // Connect the audio source to the audio context's destination (i.e., the speakers)
+    audioSource.connect(audioContext.destination);
+
+    // Event listeners for play and stop buttons
+    playButton.addEventListener('click', () => {
+      audioElement.play();
+    });
+
+    stopButton.addEventListener('click', () => {
+      audioElement.pause();
+    });
+  </script>
+</body>
+</html>

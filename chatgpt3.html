@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Audio API Example</title>
+</head>
+<body>
+  <h1>Web Audio API Example</h1>
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+
+  <script>
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let audioBuffer;
+    let sourceNode;
+
+    // Load audio file function
+    function loadAudioFile(url, callback) {
+      const request = new XMLHttpRequest();
+      request.open('GET', url, true);
+      request.responseType = 'arraybuffer';
+
+      request.onload = function() {
+        audioContext.decodeAudioData(request.response, function(buffer) {
+          audioBuffer = buffer;
+          callback();
+        });
+      };
+
+      request.send();
+    }
+
+    // Function to play audio
+    function playAudio() {
+      sourceNode = audioContext.createBufferSource();
+      sourceNode.buffer = audioBuffer;
+      sourceNode.connect(audioContext.destination);
+      sourceNode.start();
+    }
+
+    // Event listeners for play and stop buttons
+    const playButton = document.getElementById('playButton');
+    const stopButton = document.getElementById('stopButton');
+
+    playButton.addEventListener('click', () => {
+      if (audioContext.state === 'suspended') {
+        audioContext.resume().then(function() {
+          playAudio();
+        });
+      } else {
+        playAudio();
+      }
+    });
+
+    stopButton.addEventListener('click', () => {
+      if (sourceNode) {
+        sourceNode.stop();
+      }
+    });
+
+    // Load the audio file when the page is loaded
+    loadAudioFile('C:\Users\Nick\Documents\personal\GitHubRepos\learning-html-1\audio\forest-lullaby-110624.mp3', function() {
+      // Audio file loaded and decoded, you can now enable the Play button
+      playButton.disabled = false;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Audio API Example</title>
+</head>
+<body>
+  <h1>Web Audio API Example</h1>
+  <button id="playButton">Play</button>
+  <button id="stopButton">Stop</button>
+
+  <script>
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    let audioSource;
+
+    // Function to create an audio source and play the audio
+    function playAudio() {
+      if (audioSource) {
+        audioSource.disconnect();
+      }
+
+      audioSource = audioContext.createBufferSource();
+      const audioRequest = new XMLHttpRequest();
+      audioRequest.open('GET', 'forest-lullaby-110624.mp3', true); // Replace with your audio file path
+      audioRequest.responseType = 'arraybuffer';
+
+      audioRequest.onload = function() {
+        const audioData = audioRequest.response;
+
+        audioContext.decodeAudioData(audioData, function(buffer) {
+          audioSource.buffer = buffer;
+          audioSource.connect(audioContext.destination);
+          audioSource.start(0);
+        });
+      };
+
+      audioRequest.send();
+    }
+
+    // Event listeners for play and stop buttons
+    const playButton = document.getElementById('playButton');
+    const stopButton = document.getElementById('stopButton');
+
+    playButton.addEventListener('click', () => {
+      playAudio();
+    });
+
+    stopButton.addEventListener('click', () => {
+      if (audioSource) {
+        audioSource.stop();
+      }
+    });
+  </script>
+</body>
+</html>
