@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 Boilerplate</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+
+
+    <div class="sidenav" id="sidenav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+        <a href="html.html">HTML</a>
+        <a href="security.html">Security</a>
+    </div>
+    <button class="toggle-btn" id="toggleBtn">☰</button>
+    <div class="main-content" id="mainContent">
+        <h1>Collapsible Side Nav</h1>
+        <p>Click the button to toggle the sidebar.</p>
+    </div>
+
+
+  <h1>Home Page</h1>
+  <p> resources: see my <a href="https://docs.google.com/spreadsheets/d/1YrkILdv6nWw5R7oKjPEIjUIs6yeAiAAB3aeYVDw6CdQ/edit?usp=sharing" target="_blank">spreadsheet on front end dev.</a></p>
+  <script src="../js/scripts.js"></script>
+
+
+  <header>
+    <h2>Web APIs<h2>
+</header>
+<div class="web-api-cnt">
+    <div class="web-api-card">
+        <div class="web-api-card-head">Demo - Audio</div>
+    <br>
+    <div class="web-api-card-body">
+        <div id="error" class="close"></div>
+        <div>
+            <audio controls src="./audio/forest-lullaby-110624.mp3" id="audio"></audio>
+        </div>
+        <br>
+        <div>
+            <button onclick="audioFromAudioFile.init()">Init</button>
+            <button onclick="audioFromAudioFile.play()">Play</button>
+            <button onclick="audioFromAudioFile.pause()">Pause</button>
+            <button onclick="audioFromAudioFile.stop()">Stop</button>
+        </div>
+        <br>
+        <div>
+            <span>Vol: <input onchange="audioFromAudioFile.changeVolume()" type="range" id="vol" min="1" max="2" step="0.01" value="1" /></span>
+            <span>Pan: <input onchange="audioFromAudioFile.changePan()" type="range" id="panner" min="-1" max="1" step="0.01" value="0" /></span>
+        </div>
+    </div>
+    </div>
+</div>
+
+    
+</body>
+
+</html>

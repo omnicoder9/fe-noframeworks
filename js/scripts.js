@@ -1,4 +1,12 @@
-
+const sidenav = document.getElementById("sidenav");
+const mainContent = document.getElementById("mainContent");
+const toggleBtn = document.getElementById("toggleBtn");
+        
+toggleBtn.addEventListener("click", () => {
+            sidenav.classList.toggle("collapsed");
+            mainContent.classList.toggle("expanded");
+            toggleBtn.classList.toggle("moved");
+        });
 
 //https://www.educative.io/answers/how-to-use-web-audio-api-using-javascript?utm_term=&utm_campaign=%5BNew-Oct+23%5D+Performance+Max+-+Coding+Interview+Patterns&utm_source=adwords&utm_medium=ppc&hsa_acc=5451446008&hsa_cam=20684486602&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gclid=EAIaIQobChMIuceIz_SEggMVSo7CCB01rgpbEAAYByAAEgJwA_D_BwE
 const l = console.log

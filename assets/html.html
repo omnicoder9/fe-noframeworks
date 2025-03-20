@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML5 Boilerplate</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>HTML Page</h1>
+  <p> resources: see my <a href="https://docs.google.com/spreadsheets/d/1YrkILdv6nWw5R7oKjPEIjUIs6yeAiAAB3aeYVDw6CdQ/edit?usp=sharing" target="_blank">spreadsheet on front end dev.</a></p>
+  <section>
+    <h2>HTML concepts</h2>
+    <ul>
+        <li>progressive enhancement: start with simple HTML structure.  Then enhance with CSS and JS.</li>
+        <li>graceful degradation: ensure older browsers still display usable content even if they lack modern features</li>
+    </ul>
+  </section>
+  <section>
+    <h2>HTML techniques</h2>
+    <article>
+        <header><h3>Custom Data Attributes</h3><p>Custom attributes allow you to store extra information in elements.</p></header>
+        <button data-user-id="12345">Click Me</button>
+        <script>
+        document.querySelector("button").addEventListener("click", function() {
+            alert("User ID: " + this.dataset.userId);
+        });
+        </script>
+    </article>
+  </section>
+  <section>
+    <h2>HTML5 APIs</h2>
+    <article>
+        <h3>Geolocation API</h3>
+    </article>
+    <article>
+        <h3>Drag and Drop API</h3>
+    </article>
+  </section>
+  <h2>HTML5 Semantic Elements</h2>
+  <p>Using semantic elements improves accessibility and SEO.  </p>
+  <ul>
+    <li>article, section, header, footer, nav, aside, main, figure, figcaption, mark</li>
+  </ul>
+  <article>
+    <header>
+      <h1>Advanced HTML Techniques</h1>
+      <p>Published on <time datetime="2025-03-20">March 20, 2025</time></p>
+    </header>
+    <section>
+      <p>HTML5 introduces new semantic elements...</p>
+    </section>
+  </article>
+  
+  <script src="scripts.js"></script>
+
+
+  <header>
+    <h2>Web APIs<h2>
+</header>
+<script src="scripts.js"></script>
+<div class="web-api-cnt">
+    <div class="web-api-card">
+        <div class="web-api-card-head">Demo - Audio</div>
+    <br>
+    <div class="web-api-card-body">
+        <div id="error" class="close"></div>
+        <div>
+            <audio controls src="./audio/forest-lullaby-110624.mp3" id="audio"></audio>
+        </div>
+        <br>
+        <div>
+            <button onclick="audioFromAudioFile.init()">Init</button>
+            <button onclick="audioFromAudioFile.play()">Play</button>
+            <button onclick="audioFromAudioFile.pause()">Pause</button>
+            <button onclick="audioFromAudioFile.stop()">Stop</button>
+        </div>
+        <br>
+        <div>
+            <span>Vol: <input onchange="audioFromAudioFile.changeVolume()" type="range" id="vol" min="1" max="2" step="0.01" value="1" /></span>
+            <span>Pan: <input onchange="audioFromAudioFile.changePan()" type="range" id="panner" min="-1" max="1" step="0.01" value="0" /></span>
+        </div>
+    </div>
+    </div>
+</div>
+
+    
+</body>
+
+</html>
